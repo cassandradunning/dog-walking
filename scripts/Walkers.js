@@ -1,4 +1,5 @@
 import { getWalkers } from "./database.js"
+import {filterWalkerCitiesByWalker, assignedCityNames} from "./CityList.js"
 
 document.addEventListener(
     "click",  // This is the type of event
@@ -44,7 +45,9 @@ document.addEventListener(
                     the window alert message.
                 */
                 if (walker.id === parseInt(walkerId)) {
-                    window.alert(`${walker.name} services ${walker.city}`)
+                    const filterByWalker = filterWalkerCitiesByWalker(walker)
+                    const cities = assignedCityNames(filterByWalker)
+                    window.alert(`${walker.name} services these cities: ${cities}`)
                 }
             }
         }
